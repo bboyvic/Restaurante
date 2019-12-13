@@ -66,7 +66,7 @@
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-25" >
-					<input class="input100 @error('password') is-invalid @enderror" id="password" type="password" name="password" placeholder="Password" required autocomplete="new-password">
+					<input class="input100 @error('password') is-invalid @enderror" id="password" type="password" name="password" placeholder="Password" required autocomplete="new-password" minlength="8">
 					@if($errors->has('password'))
         					<label style="color:red">{{$errors->first('password')}}</label>
        				 @endif
@@ -76,7 +76,7 @@
 
 				<div class="wrap-input100 validate-input m-b-25" >
 					<input class="input100" 
-					 id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar password">
+					 id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar password" minlength="8">
 					<span class="focus-input100"></span>
 				</div>
 

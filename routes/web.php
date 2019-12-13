@@ -27,10 +27,13 @@ Route::get('/about', function () {
     return view('Arboleda.about');
 });
 
+
 Route::get('/test', function () {
     return view('Arboleda.test');
-})->name('contactanos');
+})->name('test');
 
+
+Route::post('/contactanos','EmailController@contactanos')->name('contactanos');
 
 
 Route::get('/registro', function () {
@@ -40,29 +43,10 @@ Route::get('/registro', function () {
 Route::get('/restablecer', function () {
     return view('Arboleda.emailResetPassword');
 })->name('restablecer');
-
-
-
-
-
-
 //------final de rutas de pagina presencial 
 
 
 
-
-
-
-
-
-// -----------SIN UTILIZAR
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/logueo','Auth\LoginController@showLoginForm')
-// ->name('Arboleda.Login');
-// ->middleware('guest');
 
 //-----------------PARA EL LOGIN--------------////
 
@@ -74,10 +58,9 @@ Route::get('/logueo', function () {
     return view('Arboleda.Login');
 })->name('login')->middleware('guest');
 
-
+//logueo al sistema
 Route::post('logueoLaravel', 'Auth\LoginController@login')->name('logueoLaravel');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
 
 
 // Password Reset 
@@ -94,9 +77,8 @@ Route::get('email/verify', 'Auth\VerificationController@show')->name('verificati
 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
- 
-
-
+//-----------------RUTAS DEL SISTEMA----------------------------
+//aqui va todas las rutas del sistema
 Route::group(['middleware' => 'auth'], function () {
 
 
