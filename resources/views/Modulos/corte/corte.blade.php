@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,6 +137,7 @@
   </script>
 </head>
 <body>
+
 <CENTER>
 	<h1>CORTE DE CAJA</h1>
 	<form method="POST" action="{{route('reporte.corte')}}">
@@ -192,3 +197,6 @@
 </CENTER>
 </body>
 </html>
+
+
+@endsection

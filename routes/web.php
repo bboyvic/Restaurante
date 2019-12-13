@@ -36,6 +36,15 @@ Route::get('/test', function () {
 Route::post('/contactanos','EmailController@contactanos')->name('contactanos');
 
 
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+//------final de rutas de pagina presencial 
+
+
+
+
+//-----------------PARA EL LOGIN--------------////
+Route::group(['middleware' => 'guest'], function () {
+
 Route::get('/registro', function () {
     return view('Arboleda.registro');
 });
@@ -43,24 +52,22 @@ Route::get('/registro', function () {
 Route::get('/restablecer', function () {
     return view('Arboleda.emailResetPassword');
 })->name('restablecer');
-//------final de rutas de pagina presencial 
 
-
-
-
-//-----------------PARA EL LOGIN--------------////
 
 // Registro de usuarios
 Route::post('register', 'Auth\RegisterController@register')->name('register');;
 
+
 // Ingreso al sistema...
 Route::get('/logueo', function () {
     return view('Arboleda.Login');
-})->name('login')->middleware('guest');
+})->name('login');
+// ->middleware('guest');
+
 
 //logueo al sistema
 Route::post('logueoLaravel', 'Auth\LoginController@login')->name('logueoLaravel');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
 
 
 // Password Reset 
@@ -76,6 +83,11 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
+
+});
+
+    
 
 
 //-----------------RUTAS DEL SISTEMA----------------------------
@@ -130,8 +142,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::PUT('menuplatillo/{menu_platillo}/editar','MenuPlatilloController@update')->name('menuplatillo.update');
         Route::delete("menuplatillo/{menu_platillo}/delete",'MenuPlatilloController@destroy')->name('menuplatillo.destroy');
 
+    ////----------------------RUTAS PARA  EL MENU DE MESAS DISPONIBLES-------//
+        Route::get('orden/menumesas','MesaController@menu')->name('sistema.menumesas');
+        Route::get('sistema/carrito/{mesa}','OrdenController@index')->name('sistema.carrito');
+        Route::post('sistema/realizarorden/{mesa}','OrdenController@ordenar')->name('realizar.orden');
+        Route::post('sistema/terminar/{mesa}','OrdenController@terminar')->name('terminar.orden');
 
-        // ---------------------MODULO DE CORTE----------------------------------//
+    // ---------------------MODULO DE CORTE----------------------------------//
 
         Route::get("detalleVentasEfectivo","CorteController@detallesVentasEfectivo")->name('modulo.detalleVentasEfectivo');
 
