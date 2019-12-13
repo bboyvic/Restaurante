@@ -77,9 +77,69 @@ Route::get('email/verify', 'Auth\VerificationController@show')->name('verificati
 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
+
 //-----------------RUTAS DEL SISTEMA----------------------------
-//aqui va todas las rutas del sistema
 Route::group(['middleware' => 'auth'], function () {
+
+    //-----------CRUD USUARIOS---------//
+    //--LISTAR
+        Route::get('usuarios/','UserController@index')->name('users.index');
+    //--AGREGAR DATOS DEL USUARIO
+        Route::get('usuarios/create', 'UserController@create')->name('users.create');
+        Route::post('usuarios/alta','UserController@store')->name('users.store');
+    //--ELIMINAR
+        Route::delete('/usuarios/eliminar/{user}','UserController@destroy')->name('users.destroy');
+    //--MODIFICAR
+        Route::get('usuarios/{user}/editar','UserController@edit')->name('users.edit');
+        Route::put('usuarios/{user}','UserController@update')->name('users.update');
+
+
+
+    // ----------CRUD EMPLEADO--------------//
+        Route::get('empleado/', 'EmpleadoController@index')->name('empleado.index');
+        Route::get('empleado/create','EmpleadoController@create')->name('empleado.create');
+        Route::post('empleado/alta','EmpleadoController@store')->name('empleado.alta');
+        Route::get("empleado/{empleado}",'EmpleadoController@edit')->name('empleado.edit');
+        Route::put('empleado/{empleado}/editar','EmpleadoController@update')->name('empleado.update');
+        Route::delete("empelado/{empleado}/delete",'EmpleadoController@destroy')->name('empleado.destroy');
+
+    //-----------CRUD MESAS----------//
+    //--LISTAR
+        Route::get('mesas/','MesaController@index')->name('mesas.index');
+    //--CREAR
+        Route::get('mesas/create','MesaController@create')->name('mesas.create');
+        Route::post('mesas/alta','MesaController@store')->name('mesas.store');
+    //--ACTUALIZAR
+        Route::get('mesas/{mesa}/editar','MesaController@edit')->name('mesas.edit');
+        Route::put('mesas/{mesa}','MesaController@update')->name('mesas.update');
+    //---Eliminar
+        Route::get('mesas/elimiar/{mesa}','MesaController@destroy')->name('mesas.destroy');
+    ///-----------------CRUD CATEGORIA PLATILLO---------------------/////
+        Route::get('categoriaPlatillo/', 'CategoriaPlatilloController@index')->name('categoriaPlatillo.index');
+        Route::get('categoriaPlatillo/create','CategoriaPlatilloController@create')->name('categoriaPlatillo.create');
+        Route::post('categoriaPlatillo/alta','CategoriaPlatilloController@store')->name('categoriaPlatillo.alta');
+        Route::get("categoriaPlatillo/{categoriaPlatillo}",'CategoriaPlatilloController@edit')->name('categoriaPlatillo.edit');
+        Route::PUT('categoriaPlatillo/{categoriaPlatillo}/editar','CategoriaPlatilloController@update')->name('categoriaPlatillo.update');
+        Route::delete("categoriaPlatillo/{categoriaPlatillo}/delete",'CategoriaPlatilloController@destroy')->name('categoriaPlatillo.destroy');
+
+    ///-----------------CRUD MENU PLATILLO---------------------/////
+        Route::get('menuplatillo/', 'MenuPlatilloController@index')->name('menuplatillo.index');
+        Route::get('menuplatillo/create','MenuPlatilloController@create')->name('menuplatillo.create');
+        Route::POST('menuplatillo/alta','MenuPlatilloController@store')->name('menuplatillo.alta');
+        Route::get("menuplatillo/{menu_platillo}",'MenuPlatilloController@edit')->name('menuplatillo.edit');
+        Route::PUT('menuplatillo/{menu_platillo}/editar','MenuPlatilloController@update')->name('menuplatillo.update');
+        Route::delete("menuplatillo/{menu_platillo}/delete",'MenuPlatilloController@destroy')->name('menuplatillo.destroy');
+
+
+        // ---------------------MODULO DE CORTE----------------------------------//
+
+        Route::get("detalleVentasEfectivo","CorteController@detallesVentasEfectivo")->name('modulo.detalleVentasEfectivo');
+
+        Route::get("detalleVentasTarjeta","CorteController@detalleVentasTarjeta")->name('modulo.detalleVentasTarjeta');
+
+        Route::get("corteCaja","CorteController@index")->name('modulo.corteCaja');
+
+        Route::post("reporte/corteCaja",'CorteController@reporte')->name('reporte.corte');
 
 
     Route::get('/home','HomeController@index')->name('home');
