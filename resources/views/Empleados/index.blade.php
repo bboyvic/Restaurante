@@ -11,13 +11,29 @@
 </head>
 <body>
 
-<center>
+<center>	
+	<h1>EMPLEADOS</h1>
+		<table>
+			<tr>
+				<td><a href="{{URL::action('EmpleadoController@reportepdf',['criterio'=>$criterio])}}">REPORTE PDF</a></td>
+				<td>WORD</td>
+				<td>EXCEL</td>
+				<td>
+					<form action="{{route('busqueda.empleado')}}" method="POST">
+					  	@csrf
+					    <input type="search" placeholder="Buscar" aria-label="Buscar" name="criterio" placeholder="{{old('criterio')}}">
+					    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">BUSCAR</button>
+					 </form>
+				</td>
+			</tr>
+		</table>
 		<table border="4" class="table table-striped table-bordered" style="width:70%" id="a1">
 		<thead>
 		<tr>
 			<th><b>NAME</b></th>
 			<th><b>APELLIDO PATERNO</b></th>
 			<th><b>APELLIDO MATERNO</b></th>
+			<th><b>SEXO</b></th>
 			<th><b>TELEFONO</b></th>
 			<th><b>DIRECCION</b></th>
 			<th><b>MODIFICAR</b></th>
@@ -29,7 +45,17 @@
 		<tr>
 			<td>{{$empleado->name}}</td>
 			<td>{{$empleado->apellido_paterno}}</td>
-			<td>{{$empleado->apellido_materno}}</td>
+			<td>{{$empleado->apellido_materno}}</td> 
+			@if(is_null($empleado->sexo))
+				<td>SIN DEFINIR</td>
+			@else
+				@if($empleado->sexo == 0)
+					<td>HOMBRE</td>
+				@else
+					<td>MUJER</td>
+				@endif
+			@endif
+
 			<td>{{$empleado->telefono_empleado}}</td>
 			<td>
 				<ul>
@@ -52,8 +78,12 @@
 			</td>
 		</tr>
 		@endforeach
+			<tr>
+				<td colspan="8" >{{$empleados->links()}}</td>
+			</tr>
 	</tbody>
 	</table>
+
 </center>
 
 </body>

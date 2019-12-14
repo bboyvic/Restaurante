@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Empleado;
 use Illuminate\Http\Request;
 use App\http\Requests\FormEmpleado;
+use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 
 class EmpleadoController extends Controller
 {
@@ -13,10 +15,25 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $empleados = Empleado::all();
-        return view("Empleados.index",compact("empleados"));
+
+
+        // $empleados = Empleado::all();
+        $criterio = $request['criterio'];
+        $empleados = Empleado::where('name', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('apellido_paterno', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('apellido_materno', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('telefono_empleado', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('calle', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('CP', 'LIKE', '%'.$criterio.'%')
+        ->paginate(2);
+
+        // $empleados = Empleado::where('sexo','1')->get();
+
+        // echo $empleados;
+        
+        return view("Empleados.index",compact("empleados"),['criterio'=>$criterio]);
     }
 
     /**
@@ -99,5 +116,26 @@ class EmpleadoController extends Controller
     {
         $empleado->delete();
         return redirect()->route('empleado.index');
+    }
+
+    public function reportepdf(Request $request){
+
+        $criterio = $request['criterio'];
+        $empleados = Empleado::where('name', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('apellido_paterno', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('apellido_materno', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('telefono_empleado', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('calle', 'LIKE', '%'.$criterio.'%')
+        ->orWhere('CP', 'LIKE', '%'.$criterio.'%')->get();
+        $date = Carbon::now(); 
+        $date = $date->format('Y-m-d');
+
+
+        $pdf = PDF::loadView("reportes.pdfEmpleado",compact("empleados","date"));
+
+
+        return $pdf->stream('reporteEmpleados.pdf');
+        // return $pdf->download('reportesEmpleados.pdf');
+
     }
 }

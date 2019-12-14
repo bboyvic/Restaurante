@@ -164,4 +164,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-    
+
+Route::post('busqueda/empleado','EmpleadoController@index')->name('busqueda.empleado');
+
+
+
+Route::get('reportepdf/{criterio?}','EmpleadoController@reportepdf')->name('pdf.empleado');
