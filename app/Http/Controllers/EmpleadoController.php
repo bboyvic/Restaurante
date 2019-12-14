@@ -5,8 +5,14 @@ namespace App\Http\Controllers;
 use App\Empleado;
 use Illuminate\Http\Request;
 use App\http\Requests\FormEmpleado;
+
+//Para reportes en PDF
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+
+// para reportes Excel
+use App\Exports\EmpleadosExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmpleadoController extends Controller
 {
@@ -137,5 +143,9 @@ class EmpleadoController extends Controller
         return $pdf->stream('reporteEmpleados.pdf');
         // return $pdf->download('reportesEmpleados.pdf');
 
+    }
+
+    public function reporteExcel(){
+        return Excel::download(new EmpleadosExport,'Emplados-Reporte.xlsx');
     }
 }

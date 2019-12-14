@@ -16,8 +16,8 @@
 		<table>
 			<tr>
 				<td><a href="{{URL::action('EmpleadoController@reportepdf',['criterio'=>$criterio])}}">REPORTE PDF</a></td>
+				<td><a href="{{URL::action('EmpleadoController@reporteExcel')}}">EXCEL</a></td>
 				<td>WORD</td>
-				<td>EXCEL</td>
 				<td>
 					<form action="{{route('busqueda.empleado')}}" method="POST">
 					  	@csrf
