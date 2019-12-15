@@ -137,8 +137,9 @@ class MenuPlatilloController extends Controller
         return $pdf->stream('reporteMenuPlatillos.pdf');
     }
 
-    public function reporteExcel(){
-        return Excel::download(new MenuPlatillosExport,'Platillos-Reporte.xlsx');
+    public function reporteExcel(Request $request){
+        $criterio  = $request['criterio'];
+        return Excel::download(new MenuPlatillosExport($criterio),'Platillos-Reporte.xlsx');
     }
 
 }

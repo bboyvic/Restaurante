@@ -172,8 +172,9 @@ class UserController extends Controller
 
     }
 
-    public function reporteExcel(){
-        return Excel::download(new UsersExport,'Usuario-Reporte.xlsx');
+    public function reporteExcel(Request $request){
+        $criterio = $request['criterio'];
+        return Excel::download(new UsersExport($criterio),'Usuario-Reporte.xlsx');
     }
 
 }

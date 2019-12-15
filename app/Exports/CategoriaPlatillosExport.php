@@ -18,13 +18,12 @@ class CategoriaPlatillosExport implements FromView
         return CategoriaPlatillo::all();
     }
 
+    public function __construct($criterio){
+        $this->criterio = $criterio;
+    }
     public function view(): View {
 
-
-    	return view('reportes.excelCategoriaPlatillos',[
-
-    		'categoriaplatillos' => CategoriaPlatillo::all()
-    	
-    	]);
+         $categoriaplatillos = CategoriaPlatillo::where('nombre_categoria', 'LIKE', '%'.$this->criterio.'%')->get();
+    	return view('reportes.excelCategoriaPlatillos',compact('categoriaplatillos'),['criterio'=>$this->criterio]);
     }
 }

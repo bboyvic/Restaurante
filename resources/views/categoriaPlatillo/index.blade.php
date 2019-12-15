@@ -17,7 +17,7 @@
   <table>
     <tr>
       <td><a href="{{URL::action('CategoriaPlatilloController@reportepdf',['criterio'=>$criterio])}}">REPORTE PDF</a></td>
-      <td><a href="{{URL::action('CategoriaPlatilloController@reporteExcel')}}">EXCEL</a></td>
+      <td><a href="{{URL::action('CategoriaPlatilloController@reporteExcel',['criterio'=>$criterio])}}">EXCEL</a></td>
       {{-- <td><a href="{{URL::action('UserController@reporteWord')}}">WORD</a></td> --}}
       <td>
         <form action="{{route('busqueda.categoriaplatillo')}}" method="POST">

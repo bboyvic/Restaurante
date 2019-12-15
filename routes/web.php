@@ -181,7 +181,7 @@ Route::get('Empleados/reporteExcel/{criterio?}','EmpleadoController@reporteExcel
 Route::post('busqueda/usuario','UserController@index')->name('busqueda.usuario');
 //Reportes de Usuarios
 Route::get('usuarios/reportepdf/{criterio?}','UserController@reportepdf')->name('pdf.usuario');
-Route::get('usuarios/reporteExcel/','UserController@reporteExcel')->name('excel.usuario');
+Route::get('usuarios/reporteExcel/{criterio?}','UserController@reporteExcel')->name('excel.usuario');
 // Route::get('usuarios/reporteWord/','UserController@reporteWord')->name('word.usuario');
 
 
@@ -193,7 +193,7 @@ Route::post('busqueda/categoriaplatillo','CategoriaPlatilloController@index')->n
 Route::get('categoriaplatillo/reportepdf/{criterio?}','CategoriaPlatilloController@reportepdf')->name('pdf.categoriaplatillo');
 
 
-Route::get('categoriaplatillo/reporteExcel/','CategoriaPlatilloController@reporteExcel')->name('excel.categoriaplatillo');
+Route::get('categoriaplatillo/reporteExcel/{criterio?}','CategoriaPlatilloController@reporteExcel')->name('excel.categoriaplatillo');
 // Route::get('categoriaPlatillo/reporteWord/','CategoriaPlatilloController@reporteWord')->name('word.categoriaPlatillo');
 
 
@@ -204,4 +204,4 @@ Route::post('busqueda/menu_platillo','MenuPlatilloController@index')->name('busq
 //Reportes de  PDF menu Platillos
 Route::get('menu_platillo/reportepdf/{criterio?}','MenuPlatilloController@reportepdf')->name('pdf.menu_platillo');
 //reporte de Excel  menu Platillos
-Route::get('menu_platillo/reporteExcel/','MenuPlatilloController@reporteExcel')->name('excel.menu_platillo');
+Route::get('menu_platillo/reporteExcel/{criterio?}','MenuPlatilloController@reporteExcel')->name('excel.menu_platillo');

@@ -11,7 +11,7 @@
     <table>
         <tr>
         <td><a href="{{URL::action('MenuPlatilloController@reportepdf',['criterio'=>$criterio])}}">REPORTE PDF</a></td>
-        <td><a href="{{URL::action('MenuPlatilloController@reporteExcel')}}">EXCEL</a></td>
+        <td><a href="{{URL::action('MenuPlatilloController@reporteExcel',['criterio'=>$criterio])}}">EXCEL</a></td>
         <td>
             <form action="{{route('busqueda.menu_platillo')}}" method="POST">
                 @csrf

@@ -157,9 +157,10 @@ class CategoriaPlatilloController extends Controller
 
     }
 
-    public function reporteExcel(){
+    public function reporteExcel(Request $request){
 
-        return Excel::download(new CategoriaPlatillosExport,'CategoriaPlatillos-Reporte.xlsx');
+        $criterio = $request['criterio'];
+        return Excel::download(new CategoriaPlatillosExport($criterio),'CategoriaPlatillos-Reporte.xlsx');
         // return Excel::download(new UsersExport,'Usuario-Reporte.xlsx');
     }
 }

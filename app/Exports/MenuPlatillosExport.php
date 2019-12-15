@@ -18,12 +18,16 @@ class MenuPlatillosExport implements FromView
         return MenuPlatillo::all();
     }
 
+    public function __construct($criterio)
+    {
+        $this->criterio = $criterio;
+    }
+
+
     public function view(): View {
 
+        $menu_platillos = MenuPlatillo::where('nombre_platillo', 'LIKE', '%'.$this->criterio.'%')->orWhere('descripcion_platillo', 'LIKE', '%'.$this->criterio.'%')->get();
 
-    	return view('reportes.excelMenuPlatillo',[
-
-    		'menu_platillos' => MenuPlatillo::all()
-    	]);
+    	return view('reportes.excelMenuPlatillo',compact('menu_platillos'),['criterio'=>$this->criterio]);
     }
 }

@@ -18,13 +18,21 @@ class UsersExport implements FromView
         return User::all();
     }
 
+    public function __construct($criterio)
+    {
+        $this->criterio = $criterio;
+    }
+
+
     public function view(): View {
 
 
-    	return view('reportes.excelUsuarios',[
-
-    		'users' => User::all()
-    	
-    	]);
+         $users = User::where('name', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('email', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('telefono_user', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('calle', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('localidad', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('CP', 'LIKE', '%'.$this->criterio.'%')->get();
+    	return view('reportes.excelUsuarios',compact('users'),['criterio'=>$this->criterio]);
     }
 }
