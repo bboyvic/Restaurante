@@ -150,11 +150,23 @@ class EmpleadoController extends Controller
 
     }
 
-    public function reporteExcel(){
-        return Excel::download(new EmpleadosExport,'Empleados-Reporte.xlsx');
+    public function reporteExcel(Request $request){
+
+        $criterio = $request['criterio'];
+
+        
+        return Excel::download(new EmpleadosExport($criterio),'Empleados-Reporte.xlsx');
     }
 
-    
+
+
+
+
+
+
+
+
+
     public function reporteWord(){
                 //creamos el objeto phpWord
         $phpWord = new \PhpOffice\PhpWord\PhpWord();

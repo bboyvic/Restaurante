@@ -19,13 +19,26 @@ class EmpleadosExport implements FromView
     {
         return Empleado::all();
     }
+
+
+    public function __construct($criterio)
+    {
+        $this->criterio = $criterio;
+    }
+
     public function view(): View {
 
 
-    	return view('reportes.excelEmpleados',[
+         $empleados = Empleado::where('name', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('apellido_paterno', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('apellido_materno', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('telefono_empleado', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('calle', 'LIKE', '%'.$this->criterio.'%')
+        ->orWhere('CP', 'LIKE', '%'.$this->criterio.'%')->get();
 
-    		'empleados' => Empleado::all()
+        return view('reportes.excelEmpleados',compact('empleados'),['criterio'=>$this->criterio]);
     	
-    	]);
     }
+
+ 
 }
