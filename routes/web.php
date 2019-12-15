@@ -195,3 +195,12 @@ Route::get('categoriaplatillo/reportepdf/{criterio?}','CategoriaPlatilloControll
 Route::get('categoriaplatillo/reporteExcel/','CategoriaPlatilloController@reporteExcel')->name('excel.categoriaplatillo');
 // Route::get('categoriaPlatillo/reporteWord/','CategoriaPlatilloController@reporteWord')->name('word.categoriaPlatillo');
 
+
+
+//-buqueda por citerio menu Platillos
+Route::post('busqueda/menu_platillo','MenuPlatilloController@index')->name('busqueda.menu_platillo');
+
+//Reportes de  PDF menu Platillos
+Route::get('menu_platillo/reportepdf/{criterio?}','MenuPlatilloController@reportepdf')->name('pdf.menu_platillo');
+//reporte de Excel  menu Platillos
+Route::get('menu_platillo/reporteExcel/','MenuPlatilloController@reporteExcel')->name('excel.menu_platillo');

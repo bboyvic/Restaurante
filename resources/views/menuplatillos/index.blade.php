@@ -8,7 +8,19 @@
 <center> 
     <h2>Menu Platillo</h2>
         <a href="{{route('menuplatillo.create')}}"><button type="button" class="btn btn-info btn-lg">Agregar Platillo</button></BUTTON></a><br>
-
+    <table>
+        <tr>
+        <td><a href="{{URL::action('MenuPlatilloController@reportepdf',['criterio'=>$criterio])}}">REPORTE PDF</a></td>
+        <td><a href="{{URL::action('MenuPlatilloController@reporteExcel')}}">EXCEL</a></td>
+        <td>
+            <form action="{{route('busqueda.menu_platillo')}}" method="POST">
+                @csrf
+                <input type="search" placeholder="Buscar" aria-label="Buscar" name="criterio" placeholder="{{old('criterio')}}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">BUSCAR</button>
+             </form>
+        </td>
+    </tr>
+    </table>
     <table border="2">
         <thead>
             <th>Categoria</th>
@@ -23,8 +35,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
             @foreach ($menu_platillos as $menu_platillo)
+            <tr>
             <td>{{$menu_platillo->categoria->nombre_categoria}}<br>
                 <img style="width:85px; height:85px;" src="{{asset('imag/'.$menu_platillo->categoria->imagen)}}">
             </td>

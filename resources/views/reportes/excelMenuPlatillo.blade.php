@@ -1,8 +1,8 @@
 <table style="text-align: center; border-color: #0F6766" border="2">
     <thead>
         <tr>
-            <th colspan="2"><center><img src="tasty/images/logo1.jpeg"  width="150%" style="display: block; margin: auto;" ></center></th>
-             <th colspan="9" style="text-align: center; background-color: red;">
+            <th colspan="1"><center><img src="tasty/images/logo1.jpeg"  width="150%" style="display: block; margin: auto;" ></center></th>
+             <th colspan="3" style="text-align: center; background-color: red;">
                 <b>ARBOLEDA RESTAURANTE</b><br>
                 <b>TELEFONO : </b><br>7223423640<br>
                 <b>PAGINA WEB : </b><br> www.arboledarestaurante.com<br>
@@ -10,7 +10,7 @@
             </th>
         </tr>
         <tr>
-            <td colspan="11" style="text-align: center;"><b>LISTADO DE EMPLEADOS</b></td>
+            <td colspan="4" style="text-align: center;"><b>LISTADO DE PLATILLOS</b></td>
         </tr>
         <tr></tr>
         <tr>
@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-      @foreach ($menu_platillos as $menu_platillo)
+         @foreach ($menu_platillos as $menu_platillo)
             <tr>
             <td style="border-color: #0F6766">{{$menu_platillo->categoria->nombre_categoria}}
             </td>
