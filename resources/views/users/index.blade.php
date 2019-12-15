@@ -5,11 +5,7 @@
 </head>
 <body>
 
- <link rel="stylesheet" href="{{asset('datatables/bootstrap.css')}}">
-        <link rel="stylesheet" href="{{asset('datatables/bootstrap4.min.css')}}">
-        <link rel="stylesheet" href="{{asset('datatables/css/jquery.dataTables.min.css')}}">
-        <link rel="stylesheet" href="{{asset('datatables/css/estilos.css')}}">
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<center>
 		<h1>LISTADO DE USUARIOS</h1>
 	
@@ -18,12 +14,31 @@
 		</center>
 
 <div class="container">
+	<center>
+	<table>
+		<tr>
+			<td><a href="{{URL::action('UserController@reportepdf',['criterio'=>$criterio])}}">REPORTE PDF</a></td>
+			<td><a href="{{URL::action('UserController@reporteExcel')}}">EXCEL</a></td>
+			{{-- <td><a href="{{URL::action('UserController@reporteWord')}}">WORD</a></td> --}}
+			<td>
+				<form action="{{route('busqueda.usuario')}}" method="POST">
+				  	@csrf
+				    <input type="search" placeholder="Buscar" aria-label="Buscar" name="criterio" placeholder="{{old('criterio')}}">
+				    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">BUSCAR</button>
+				 </form>
+			</td>
+		</tr>
+
+	</table>
+	</center>
 	<table border="4" class="table table-striped table-bordered" style="width:100%" id="a1">
 		<thead>
+			
 		<tr>
 			<th><b>NAME</b></th>
 			<th><b>EMAIL</b></th>
-			<th><b>DATOS DEL CLIENTE</b></th>
+			<th><b>SEXO</b></th>
+			<th><b>DATOS DEL USUARIO</b></th>
 			<th><b>MODIFICAR</b></th>
 			<th><b>ELIMINAR</b></th>
 		</tr>
@@ -33,6 +48,15 @@
 		<tr>
 			<td>{{$user->name}}</td>
 			<td>{{$user->email}}</td>
+			@if(is_null($user->sexo))
+                <td>SIN DEFINIR</td>
+            @else
+                @if($user->sexo == 0)
+                    <td>HOMBRE</td>
+                @else
+                    <td>MUJER</td>
+                @endif
+            @endif
 			<td>
 				<ul>
 					<li><b>TEL:</b> {{$user->telefono_user}}</li>
@@ -51,24 +75,12 @@
 			</td>
 		</tr>
 		@endforeach
+		<tr>
+			<td colspan="4">{{$users->links()}}</td>
+		</tr>
 	</tbody>
 	</table>
 </div>
-
-<script src="{{{ asset('datatables/js/jquery-3.3.1.js')}}}"></script>
-<script src="{{{ asset('datatables/js/jquery.dataTables.min.js')}}}"></script>
-<script src="{{{ asset('datatables/js/dataTables.bootstrap4.min.js')}}}"></script>
-<script src="{{{ asset('datatables/js/dataTables.buttons.min.js')}}}"></script>
-<script src="{{{ asset('datatables/js/jszip.min.js')}}}"></script>
-<script src="{{{ asset('datatables/js/pdfmake.min.js')}}}"></script>
-<script src="{{{ asset('datatables/js/vfs_fonts.js')}}}"></script>
-<script src="{{{ asset('datatables/js/buttons.html5.min.js')}}}"></script>
-<script src="{{{ asset('datatables/js/buttons.print.min.js')}}}"></script>
-<script src="{{{ asset('datatables/js/buttons.print.min.js')}}}"></script>
-<script src="{{{ asset('datatables/js/buttons.colVis.min.js')}}}"></script>
-<script src="{{{ asset('js/datatables.js')}}}"></script>
-
-
 
 </body>
 </html>

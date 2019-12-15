@@ -5,7 +5,10 @@
 </head>
 <body>
 
-<center> <h2>Menu Platillo</h2>
+<center> 
+    <h2>Menu Platillo</h2>
+        <a href="{{route('menuplatillo.create')}}"><button type="button" class="btn btn-info btn-lg">Agregar Platillo</button></BUTTON></a><br>
+
     <table border="2">
         <thead>
             <th>Categoria</th>
@@ -42,7 +45,7 @@
         @endforeach
     </tbody>
 </table>
-
+</center>
 
 </body>
 </html>

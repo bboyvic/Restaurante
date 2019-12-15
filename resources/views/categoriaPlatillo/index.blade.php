@@ -3,24 +3,36 @@
 <html>
 <head>
     <title>INDEX</title>
-     <link href = "{{asset('js/jquery-ui-1.12.1/jquery-ui.css')}}"
-  rel = "stylesheet">
-  <script src = "{{asset('js/jquery-3.4.1.js')}}"></script>
-  <script src = "{{asset('js/jquery-ui-1.12.1/jquery-ui.js')}}"></script>
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script type="text/javascript">
- $(document).ready(function(){
-    
- });
-  </script>
 </head>
 <body>
 
 <center>
+    <h1>LISTADO DE CATEGORIAS DE PLATILLOS</h1>
+  
+
+    <a href="{{route('categoriaPlatillo.create')}}"><button type="button" class="btn btn-info btn-lg">Agregar Categoria</button></BUTTON></a><br>
+
+  <table>
+    <tr>
+      <td><a href="{{URL::action('CategoriaPlatilloController@reportepdf',['criterio'=>$criterio])}}">REPORTE PDF</a></td>
+      <td><a href="{{URL::action('CategoriaPlatilloController@reporteExcel')}}">EXCEL</a></td>
+      {{-- <td><a href="{{URL::action('UserController@reporteWord')}}">WORD</a></td> --}}
+      <td>
+        <form action="{{route('busqueda.categoriaplatillo')}}" method="POST">
+          @csrf
+          <input type="search" placeholder="Buscar" aria-label="Buscar" name="criterio" placeholder="{{old('criterio')}}">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">BUSCAR</button>
+        </form>
+      </td>
+    </tr>
+
+  </table>
         <table border="4">
         <thead>
         <tr>
-            <th><b>NAME</b></th>
+            <th><b>NOMBRE</b></th>
             <th><b>IMAGEN</b></th>
             <th><b>MODIFICAR</b></th>
             <th><b>ELIMINAR</b></th>

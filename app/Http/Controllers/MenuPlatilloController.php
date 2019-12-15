@@ -6,7 +6,6 @@ use App\Http\Requests\menuplatillosRequest;
 use App\MenuPlatillo;
 use App\CategoriaPlatillo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 
 class MenuPlatilloController extends Controller
@@ -16,7 +15,7 @@ class MenuPlatilloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $menu_platillos=MenuPlatillo::All();

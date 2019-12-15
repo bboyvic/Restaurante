@@ -166,9 +166,32 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
+///----------------RUTAS DE REPORTES-------------------------------------///
 
+//-buqueda por citerio empleados
 Route::post('busqueda/empleado','EmpleadoController@index')->name('busqueda.empleado');
+//Reportes de Empleados
+Route::get('Empleados/reportepdf/{criterio?}','EmpleadoController@reportepdf')->name('pdf.empleado');
+Route::get('Empleados/reporteExcel/','EmpleadoController@reporteExcel')->name('excel.empleado');
+// Route::get('Empleados/reporteWord/','EmpleadoController@reporteWord')->name('word.empleado');
 
-Route::get('reportepdf/{criterio?}','EmpleadoController@reportepdf')->name('pdf.empleado');
 
-Route::get('reporteExcel/','EmpleadoController@reporteExcel')->name('excel.empleado');
+//-buqueda por citerio empleados
+Route::post('busqueda/usuario','UserController@index')->name('busqueda.usuario');
+//Reportes de Usuarios
+Route::get('usuarios/reportepdf/{criterio?}','UserController@reportepdf')->name('pdf.usuario');
+Route::get('usuarios/reporteExcel/','UserController@reporteExcel')->name('excel.usuario');
+// Route::get('usuarios/reporteWord/','UserController@reporteWord')->name('word.usuario');
+
+
+//-buqueda por citerio Categoria Platillo
+Route::post('busqueda/categoriaplatillo','CategoriaPlatilloController@index')->name('busqueda.categoriaplatillo');
+
+
+//Reportes de Categoria Platillo
+Route::get('categoriaplatillo/reportepdf/{criterio?}','CategoriaPlatilloController@reportepdf')->name('pdf.categoriaplatillo');
+
+
+Route::get('categoriaplatillo/reporteExcel/','CategoriaPlatilloController@reporteExcel')->name('excel.categoriaplatillo');
+// Route::get('categoriaPlatillo/reporteWord/','CategoriaPlatilloController@reporteWord')->name('word.categoriaPlatillo');
+

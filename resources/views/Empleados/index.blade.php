@@ -17,7 +17,7 @@
 			<tr>
 				<td><a href="{{URL::action('EmpleadoController@reportepdf',['criterio'=>$criterio])}}">REPORTE PDF</a></td>
 				<td><a href="{{URL::action('EmpleadoController@reporteExcel')}}">EXCEL</a></td>
-				<td>WORD</td>
+				{{-- <td><a href="{{URL::action('EmpleadoController@reporteWord')}}">WORD</a></td> --}}
 				<td>
 					<form action="{{route('busqueda.empleado')}}" method="POST">
 					  	@csrf
@@ -30,7 +30,7 @@
 		<table border="4" class="table table-striped table-bordered" style="width:70%" id="a1">
 		<thead>
 		<tr>
-			<th><b>NAME</b></th>
+			<th><b>NOMBRE</b></th>
 			<th><b>APELLIDO PATERNO</b></th>
 			<th><b>APELLIDO MATERNO</b></th>
 			<th><b>SEXO</b></th>
