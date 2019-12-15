@@ -14,20 +14,37 @@
         </tr>
         <tr></tr>
         <tr>
-            <th><b>CATEGORIA</b></th>
-            <th><b>NOMBRE PLATILLO</b></th>
-            <th><b>PRECIO PALTILLO</b></th>
-            <th><b>DESCRIPCIÓN</b></th>       
+            <th><b>NOMBRE</b></th>
+            <th><b>APELLIDO PATERNO</b></th>
+            <th><b>APELLIDO MATERNO</b></th>
+            <th><b>SEXO</b></th>
+            <th><b>TELEFONO</b></th>
+            <th colspan="6" style="text-align: center;"><b>DIRECCION</b></th>        
         </tr>
     </thead>
     <tbody>
-      @foreach ($menu_platillos as $menu_platillo)
-            <tr>
-            <td style="border-color: #0F6766">{{$menu_platillo->categoria->nombre_categoria}}
-            </td>
-            <td style="border-color: #0F6766">{{$menu_platillo->nombre_platillo}}</td>
-            <td style="border-color: #0F6766">{{$menu_platillo->precio_platillo}}</td>
-            <td style="border-color: #0F6766">{{$menu_platillo->descripcion_platillo}}</td>
+         @foreach($empleados as $empleado)
+        <tr>
+            <td style="border-color: #0F6766">{{$empleado->name}}</td>
+            <td style="border-color: #0F6766">{{$empleado->apellido_paterno}}</td>
+            <td style="border-color: #0F6766">{{$empleado->apellido_materno}}</td> 
+            @if(is_null($empleado->sexo))
+                <td style="border-color: #0F6766">SIN DEFINIR</td>
+            @else
+                @if($empleado->sexo == 0)
+                    <td style="border-color: #0F6766">HOMBRE</td>
+                @else
+                    <td style="border-color: #0F6766">MUJER</td>
+                @endif
+            @endif
+
+            <td style="border-color: #0F6766">{{$empleado->telefono_empleado}}</td>
+            <td style="text-align: center;"><b>LOCALIDAD:</b>{{$empleado->localidad}}</td>
+            <td><b>CALLE:</b> {{$empleado->calle}}</td>
+            <td><b>N# interior:</b> {{$empleado->num_interior}}</td>
+            <td><b>N# exterior:</b> {{$empleado->num_exterior}}</td>
+            <td><b>CALLE:</b> {{$empleado->calle}}</td>
+            <td><b>CP:</b> {{$empleado->CP}}</td>
         </tr>
         @endforeach
     </tbody>
