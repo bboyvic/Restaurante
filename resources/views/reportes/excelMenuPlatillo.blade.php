@@ -15,8 +15,8 @@
         <tr></tr>
         <tr>
             <th><b>CATEGORIA</b></th>
-            <th><b>NOMBRE PLATILLO</b></th>
-            <th><b>PRECIO PALTILLO</b></th>
+            <th><b>NOMBRE</b></th>
+            <th><b>PRECIO</b></th>
             <th><b>DESCRIPCIÓN</b></th>       
         </tr>
     </thead>

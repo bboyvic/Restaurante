@@ -66,7 +66,7 @@
 <table  align="center" style="text-align: center; border-color: #0F6766" border="2">
         <thead>
         <tr style="background-color: #0F6766; width: 80%; color: #FFFFFF">
-            <th><b >NAME</b></th>
+            <th><b>NOMBRE</b></th>
             <th><b>APELLIDO PATERNO</b></th>
             <th><b>APELLIDO MATERNO</b></th>
             <th><b>SEXO</b></th>
