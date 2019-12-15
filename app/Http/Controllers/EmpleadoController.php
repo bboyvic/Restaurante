@@ -154,17 +154,9 @@ class EmpleadoController extends Controller
 
         $criterio = $request['criterio'];
 
-        
+
         return Excel::download(new EmpleadosExport($criterio),'Empleados-Reporte.xlsx');
     }
-
-
-
-
-
-
-
-
 
 
     public function reporteWord(){
